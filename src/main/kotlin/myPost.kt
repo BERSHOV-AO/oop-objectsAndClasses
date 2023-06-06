@@ -23,16 +23,16 @@ data class Post(
 
 object WellService {
     private var posts = emptyArray<Post>()
-    private var id: Int = 1
+    private var id: Int = 0
 
     fun add(post: Post): Post {
 
         if (posts.isEmpty()) {
-            posts += post.copy(id = id)
             id++
+            posts += post.copy(id = id)
         } else {
-            posts += post.copy(id = id)
             id++
+            posts += post.copy(id = id)
         }
         return posts.last()
     }
@@ -47,10 +47,15 @@ object WellService {
         return indexBool
     }
 
-    fun getArrayPosts(){
+    fun printArrayPosts() {
         for (i in posts.indices) {
             println(posts[i])
         }
+    }
+
+    fun clear() {
+        posts = emptyArray()
+        id = 0
     }
 }
 
@@ -71,8 +76,8 @@ fun main() {
     println(wS.add(post1))
     println(wS.add(post1))
 
-    println( wS.update(post2))
-    wS.getArrayPosts()
+    println(wS.update(post2))
+    wS.printArrayPosts()
 
 
 }
