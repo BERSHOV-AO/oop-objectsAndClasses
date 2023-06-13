@@ -67,6 +67,28 @@ object WellService {
     }
 }
 
+interface Attachment{
+    val type: String
+}
+
+
+data class Photo(
+    val id: Int,
+    val ownerId: Int,
+    val photo130: String,
+    val photo604: String
+)
+
+data class Video(
+    val id: Int,
+    val ownerId: Int,
+    val title: String,
+    val duration: Int
+)
+
+data class VideoAttachment(override val type: String = "video", val video: Video): Attachment
+
+data class PhotoAttachment(override val type: String = "photo", val photo: Photo): Attachment
 fun main() {
 
     val post1 = Post(
@@ -85,4 +107,7 @@ fun main() {
 
     println(wS.update(post2))
     wS.printArrayPosts()
+
+    println(PhotoAttachment("photo", Photo(1,1,"https://vk.com/some_photo_link", "https://vk.com/some_photo_link")))
+    println(VideoAttachment("video", Video(1,1,"A Funny Video", 30)))
 }
