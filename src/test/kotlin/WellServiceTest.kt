@@ -13,7 +13,7 @@ class WellServiceTest {
     @Test
     fun addTest() {
         val post1 = Post(
-            0, 22, 344, 1685810584, "hello Kotlin", true, Comments(count = 100), "post", 99, false
+            0, 22, 344, 1685810584, "hello Kotlin", true, Comments(count = 100), "post", 99, false, arrayOf(null)
 
         )
         var valueId = add(post1).id
@@ -23,10 +23,10 @@ class WellServiceTest {
     @Test
     fun updateTestSuccess() {
         val post1 = Post(
-            0, 22, 344, 1685810584, "hello Kotlin", true, Comments(count = 100), "post", 99, false
+            0, 22, 344, 1685810584, "hello Kotlin", true, Comments(count = 100), "post", 99, false, arrayOf(null)
         )
         val post2 = Post(
-            2, 77, 6768, 1685810584, "hello Kotlin", true, Comments(count = 121), "post", 99, false
+            2, 77, 6768, 1685810584, "hello Kotlin", true, Comments(count = 121), "post", 99, false, arrayOf(post1)
         )
         add(post1)
         add(post1)
@@ -44,10 +44,10 @@ class WellServiceTest {
     @Test
     fun updateTestFailed() {
         val post1 = Post(
-            0, 22, 344, 1685810584, "hello Kotlin", true, Comments(count = 100), "post", 99, false
+            0, 22, 344, 1685810584, "hello Kotlin", true, Comments(count = 100), "post", 99, false, arrayOf(null)
         )
         val post4 = Post(
-            4, 77, 6768, 1685810584, "hello Kotlin", true, Comments(count = 121), "post", 99, false
+            4, 77, 6768, 1685810584, "hello Kotlin", true, Comments(count = 121), "post", 99, false, arrayOf(post1)
         )
         add(post1)
         add(post1)

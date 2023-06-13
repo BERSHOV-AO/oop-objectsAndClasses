@@ -18,8 +18,22 @@ data class Post(
     val comments: Comments,
     val postType: String,
     val signerId: Int,
-    val canDelete: Boolean
-)
+    val canDelete: Boolean,
+    val copyHistory: Array<Post?>
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Post
+
+        return copyHistory.contentEquals(other.copyHistory)
+    }
+
+    override fun hashCode(): Int {
+        return copyHistory.contentHashCode()
+    }
+}
 
 object WellService {
     private var posts = emptyArray<Post>()
@@ -56,10 +70,10 @@ object WellService {
 fun main() {
 
     val post1 = Post(
-        0, 22, 344, 1685810584, "hello Kotlin", true, Comments(count = 100), "post", 99, false
+        0, 22, 344, 1685810584, "hello Kotlin", true, Comments(count = 100), "post", 99, false, arrayOf(null)
     )
     val post2 = Post(
-        2, 77, 6768, 1685810584, "hello Kotlin", true, Comments(count = 121), "post", 99, false
+        2, 77, 6768, 1685810584, "hello Kotlin", true, Comments(count = 121), "post", 99, false, arrayOf(post1)
     )
 
 
@@ -71,6 +85,4 @@ fun main() {
 
     println(wS.update(post2))
     wS.printArrayPosts()
-
-
 }
