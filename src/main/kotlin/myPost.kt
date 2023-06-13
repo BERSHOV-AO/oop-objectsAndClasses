@@ -27,13 +27,7 @@ object WellService {
 
     fun add(post: Post): Post {
 
-        if (posts.isEmpty()) {
-            id++
-            posts += post.copy(id = id)
-        } else {
-            id++
-            posts += post.copy(id = id)
-        }
+        posts += post.copy(id = ++id)
         return posts.last()
     }
 
@@ -41,7 +35,7 @@ object WellService {
         var indexBool: Boolean = false
         for ((index, nextPost) in posts.withIndex())
             if (nextPost.id == post.id) { //проверяем что id текущего поста равен нужному/ если равны, просто заменяем пост в массиве
-                posts[index] = post
+                posts[index] = post.copy()
                 indexBool = true
             }
         return indexBool
@@ -58,7 +52,6 @@ object WellService {
         id = 0
     }
 }
-
 
 fun main() {
 

@@ -54,6 +54,6 @@ class WellServiceTest {
         add(post1)
 
         val flagBool: Boolean = update(post4)
-        assertEquals(false, flagBool)
+        assertFalse(flagBool)
     }
 }
